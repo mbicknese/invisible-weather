@@ -1,0 +1,25 @@
+{
+  "name": "@mbicknese/invisible-weather",
+  "version": "1.0.0",
+  "description": "Shows time and weather for given places",
+  "main": "weather",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc weather.ts --outFile weather && chmod +x weather"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbicknese/invisible-weather.git"
+  },
+  "author": "Maarten Bicknese <maarten.bicknese@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mbicknese/invisible-weather/issues"
+  },
+  "homepage": "https://github.com/mbicknese/invisible-weather#readme",
+  "private": true,
+  "devDependencies": {
+    "@invisible/tslint-config": "^1.0.10",
+    "@types/node": "^12.0.0"
+  }
+}
