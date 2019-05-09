@@ -8,11 +8,9 @@
     "outDir": "./",
     "sourceMap": false,
     "strict": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictNullChecks": true
   },
-  "include": [
-    "**.ts"
-  ],
   "exclude": [
     "node_modules"
   ]
