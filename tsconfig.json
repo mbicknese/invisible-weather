@@ -7,7 +7,8 @@
     "module": "commonjs",
     "outDir": "./",
     "sourceMap": false,
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true
   },
   "include": [
     "**.ts"

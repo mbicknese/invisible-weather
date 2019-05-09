@@ -1,0 +1,90 @@
+{
+  "byZip": {
+    "902010": {
+      "coord": {
+        "lon": -118.4,
+        "lat": 34.07
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 289.47,
+        "pressure": 1016,
+        "humidity": 72,
+        "temp_min": 287.59,
+        "temp_max": 291.48
+      },
+      "visibility": 16093,
+      "wind": {
+        "speed": 2.79,
+        "deg": 219.058
+      },
+      "clouds": {
+        "all": 90
+      },
+      "dt": 1557339154,
+      "sys": {
+        "type": 1,
+        "id": 3694,
+        "message": 0.0114,
+        "country": "US",
+        "sunrise": 1557320265,
+        "sunset": 1557369746
+      },
+      "id": 420004549,
+      "name": "Beverly Hills",
+      "cod": 200
+    }
+  },
+  "byCity": {
+    "gouda": {
+      "coord": {
+        "lon": 4.71,
+        "lat": 52.01
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "description": "overcast clouds",
+          "icon": "04d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 287.42,
+        "pressure": 996,
+        "humidity": 76,
+        "temp_min": 285.93,
+        "temp_max": 289.26
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 3.1,
+        "deg": 240
+      },
+      "clouds": {
+        "all": 90
+      },
+      "dt": 1557395774,
+      "sys": {
+        "type": 1,
+        "id": 1541,
+        "message": 0.0088,
+        "country": "NL",
+        "sunrise": 1557374253,
+        "sunset": 1557429463
+      },
+      "id": 2755420,
+      "name": "Gouda",
+      "cod": 200
+    }
+  }
+}
