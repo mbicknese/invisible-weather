@@ -61,4 +61,7 @@ typings/
 .next
 
 # build result
-weather
+build
+
+# VS Code config
+.vscode
