@@ -1,8 +1,8 @@
 import { ICurrentWeather, getWeather } from './weather'
 import { drop, flow, join, split, trim, map, filter, replace } from 'lodash/fp'
 
-type foo = (args: Array<string>) => Array<string>
-export const locationsFromArguments: foo = flow([
+type InputSanitizer = (args: Array<string>) => Array<string>
+export const locationsFromArguments: InputSanitizer = flow([
     drop(2),
     join(' '),
     split(','),
