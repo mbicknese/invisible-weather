@@ -27,7 +27,7 @@ const getCurrentWeather = async (retrieve: () => Promise<IOpenWeatherObject>): P
 const getCurrentWeatherForQuery = async (query: string): Promise<ICurrentWeather> => getCurrentWeather(() => getOpenWeatherDataByQuery(query))
 const getCurrentWeatherForZip = async (zip: string): Promise<ICurrentWeather> => getCurrentWeather(() => getOpenWeatherDataByZip(zip))
 
-interface ICurrentWeather {
+export interface ICurrentWeather {
     main: string,
     description: string
 }
