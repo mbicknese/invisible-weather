@@ -1,21 +1,23 @@
-import { getWeather } from './src/weather'
-
-process.stdout.write('You have passed: ')
-process.stdout.write(JSON.stringify(process.argv))
-process.stdout.write('\n\n');
+import chalk from 'chalk'
+import isOnline from 'is-online'
+import { getWeathers, locationsFromArguments, writeLocationInfo } from './src/io'
 
 (async () => {
-    let data
+    if (!await isOnline()) {
+        process.stdout.write(chalk`{red You\'re offline!}\n`)
+        process.exit()
+    }
 
-    data = await getWeather('Gouda')
-    process.stdout.write(JSON.stringify(data))
-    process.stdout.write('\n\n')
+    const locations = locationsFromArguments(process.argv)
+    const weathers = await getWeathers(locations)
+    // getTimeZones
 
-    data = await getWeather('90210')
-    process.stdout.write(JSON.stringify(data))
-    process.stdout.write('\n\n')
+    writeLocationInfo(
+        locations.reduce((acc, location) => ({ ...acc, [location]: {
+            currentWeather: weathers[location],
+            timeZone: 'WIP'
+        }}), {}),
+        process.stdout.write.bind(process.stdout)
+    )
+})();
 
-    data = await getWeather('df')
-    process.stdout.write(JSON.stringify(data))
-    process.stdout.write('\n\n')
-})()
