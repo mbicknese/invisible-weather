@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "commander": "^2.20.0",
     "is-online": "^8.2.0",
     "lodash": "^4.17.11",
     "openweather-apis": "^4.0.0",
