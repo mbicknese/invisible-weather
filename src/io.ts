@@ -1,5 +1,5 @@
 import { ICurrentWeather, getWeather } from './weather'
-import { drop, flow, join, split, trim, map, filter, replace } from 'lodash/fp'
+import { drop, flow, join, split, trim, map, filter, replace, zipObject } from 'lodash/fp'
 
 type InputSanitizer = (args: Array<string>) => Array<string>
 export const locationsFromArguments: InputSanitizer = flow([
@@ -13,10 +13,18 @@ export const locationsFromArguments: InputSanitizer = flow([
 
 // Not really IO
 export const getWeathers = async (locations: Array<string>): Promise<{ [location: string]: ICurrentWeather }> => {
-    const weathers = locations.reduce((acc, location) => ({ ...acc, [location]: getWeather(location) }), {})
-    await Promise.all(Object.values(weathers))
-    return weathers
+    const promises = locations.map(parseWeather)
+    const weathers = await Promise.all(promises)
+    return zipObject(locations, weathers)
 }
+const parseWeather = async (location: string): Promise<ICurrentWeather> => {
+    try {
+        return await getWeather(location)
+    } catch {
+        return { main: 'Unknown', description: 'could not find location' }
+    }
+}
+
 // Not really IO
 export const getTimeZones = async (locations: Array<string>): Promise<{ [location: string]: string }> => {
     return {}

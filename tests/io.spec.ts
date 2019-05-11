@@ -23,7 +23,16 @@ describe('Input/Output', () => {
 
         const currentWeathers = await getWeathers(locations);
 
-        expect(Object.keys(currentWeathers)).toHaveLength(2)
+        expect(currentWeathers).toMatchObject({
+            '90210': {
+                main: 'Mocked',
+                description: 'Mocked'
+            },
+            'Gouda': {
+                main: 'Mocked',
+                description: 'Mocked'
+            }
+        })
         expect(getWeather.mock.calls[0][0]).toBe('90210')
         expect(getWeather.mock.calls[1][0]).toBe('Gouda')
     })
