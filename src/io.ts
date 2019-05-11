@@ -23,8 +23,10 @@ export const getTimeZones = async (locations: Array<string>): Promise<{ [locatio
 }
 
 export const writeLocationInfo = (locationInfo: LocationInfo, out: OutputStream): void => {
-    out('')
+    out(`${Object.keys(locationInfo).map(buildLocationLine(locationInfo)).join('\n')}\n\n`)
 }
+const buildLocationLine = (info: LocationInfo) => (name: string): string =>
+    `${name} (${info[name].timeZone}): ${info[name].currentWeather.main}, ${info[name].currentWeather.description}`
 
 type OutputStream = (message: string) => void
 interface LocationInfo {

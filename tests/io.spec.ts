@@ -50,8 +50,8 @@ describe('Input/Output', () => {
         writeLocationInfo(locationInfo, out)
 
         expect(out).toHaveBeenCalledWith(
-`Gouda (GMT+1): Cloudy, the usual
-90210 (GMT-7): Sunny, no clouds
+`90210 (GMT-7): Sunny, no clouds
+Gouda (GMT+1): Cloudy, the usual
 
 `
         )
