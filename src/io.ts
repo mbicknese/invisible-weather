@@ -1,4 +1,4 @@
-import { ICurrentWeather } from './weather'
+import { ICurrentWeather, getWeather } from './weather'
 import { drop, flow, join, split, trim, map, filter, replace } from 'lodash/fp'
 
 type foo = (args: Array<string>) => Array<string>
@@ -13,7 +13,9 @@ export const locationsFromArguments: foo = flow([
 
 // Not really IO
 export const getWeathers = async (locations: Array<string>): Promise<{ [location: string]: ICurrentWeather }> => {
-    return {}
+    const weathers = locations.reduce((acc, location) => ({ ...acc, [location]: getWeather(location) }), {})
+    await Promise.all(Object.values(weathers))
+    return weathers
 }
 // Not really IO
 export const getTimeZones = async (locations: Array<string>): Promise<{ [location: string]: string }> => {

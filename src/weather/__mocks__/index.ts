@@ -2,9 +2,9 @@ const original = jest.requireActual('../index')
 
 module.exports = {
     ...original,
-    getWeather: async (location: string) => ({
+    getWeather: jest.fn(async (location: string) => ({
         main: 'Mocked',
         description: 'Mocked'
-    }),
+    })),
     ICurrentWeather: {}
 }
