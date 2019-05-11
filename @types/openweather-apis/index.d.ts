@@ -45,6 +45,7 @@ declare namespace Weather {
     function setCity(query: string|null): void
     function setZipCode(zipCode: string|null): void
     function getAllWeather(callback: (error: string|null, data: IOpenWeatherObject) => void): void
+    function setLang(language: string): void
 }
 
 declare module 'openweather-apis'{

@@ -4,6 +4,7 @@ import weather from 'openweather-apis'
 import { openWeatherAppID } from '../config'
 
 weather.setAPPID(openWeatherAppID)
+weather.setLang('en')
 
 export const getOpenWeatherDataByQuery = memoize(async (query: string): Promise<IOpenWeatherObject> => {
     weather.setZipCode(null)
