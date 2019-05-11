@@ -1,8 +1,15 @@
 import { ICurrentWeather } from './weather'
+import { drop, flow, join, split, trim, map, filter, replace } from 'lodash/fp'
 
-export const locationsFromArguments = (args: Array<string>): Array<string> => {
-    return args
-}
+type foo = (args: Array<string>) => Array<string>
+export const locationsFromArguments: foo = flow([
+    drop(2),
+    join(' '),
+    split(','),
+    map(trim),
+    map(replace(/[^a-zA-Z0-9 ]*/, '')), // Matches all non alphanumeric or spaces
+    filter(item => item !== '')
+])
 
 // Not really IO
 export const getWeathers = async (locations: Array<string>): Promise<{ [location: string]: ICurrentWeather }> => {
