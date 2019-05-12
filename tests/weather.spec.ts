@@ -1,10 +1,12 @@
 import nock from 'nock'
 
-import { getWeather, WeatherLocationNotFoundError } from '../src/weather'
+import { getLatLong, getWeather, WeatherLocationNotFoundError } from '../src/weather'
 import * as weatherFixtures from './fixtures/weather.json'
 
 nock.disableNetConnect()
 const scope = nock(/api\.openweathermap\.org/)
+let done: () => void;
+const previousTest = new Promise(r => { done = r });
 
 describe('Weather Features', (): void => {
     it('can retrieve weather information from the web based on query', async (): Promise<void> => {
@@ -17,6 +19,7 @@ describe('Weather Features', (): void => {
             main: weatherFixtures.byCity.gouda.weather[0].main,
             description: weatherFixtures.byCity.gouda.weather[0].description,
         })
+        done()
     })
 
     it('can retrieve weather information from the web based on zip', async (): Promise<void> => {
@@ -48,5 +51,14 @@ describe('Weather Features', (): void => {
             main: 'Unknown',
             description: 'unknown',
         })
+    })
+
+    // I've abused this test to also test memorization of the api
+    it('can extract latitude and longitude info from weather data', async (): Promise<void> => {
+        await previousTest // Sort of ugly hack to force dependency
+
+        const { lat, long } = await getLatLong('Gouda')
+        expect(lat).toBe(weatherFixtures.byCity.gouda.coord.lat)
+        expect(long).toBe(weatherFixtures.byCity.gouda.coord.lon)
     })
 })
