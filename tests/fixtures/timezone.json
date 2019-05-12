@@ -1,0 +1,15 @@
+{
+  "status": "OK",
+  "message": "",
+  "countryCode": "US",
+  "countryName": "United States",
+  "zoneName": "America\/Chicago",
+  "abbreviation": "CDT",
+  "gmtOffset": -18000,
+  "dst": "1",
+  "zoneStart": 1552204800,
+  "zoneEnd": 1572764399,
+  "nextAbbreviation": "CST",
+  "timestamp": 1557660082,
+  "formatted": "2019-05-12 11:21:22"
+}

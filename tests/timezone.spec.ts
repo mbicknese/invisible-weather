@@ -1,12 +1,19 @@
+import nock from 'nock'
 import { getTimeZone } from '../src/timezone'
+
+import timezoneResponse from './fixtures/timezone.json'
+
+nock.disableNetConnect()
+const scope = nock(/api\.timezonedb\.com/)
 
 describe('Time Zones', () => {
     it('can retrieve a time zone for given latitude and longitude', async (): Promise<void> => {
-        // TODO Write Nock interceptor
+        scope.get(/\?(.*)lat=-87.62&lng=41.88(.*)/)
+            .reply(200, timezoneResponse)
 
-        const timeZone = await getTimeZone('4.71', '52.01')
+        const timeZone = await getTimeZone('-87.62', '41.88')
 
-        expect(timeZone).toBe('GMT+1')
+        expect(timeZone).toBe('CDT')
     })
 
     it('throws an error for invalid inputs', async (): Promise<void> => {
