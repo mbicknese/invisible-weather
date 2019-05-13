@@ -1,5 +1,6 @@
-import { ICurrentWeather, getWeather } from './weather'
+import { ICurrentWeather, getWeather, getLatLong, ILatLong } from './weather'
 import { drop, flow, join, split, trim, map, filter, replace, zipObject } from 'lodash/fp'
+import { getTimeZone } from './timezone';
 
 type InputSanitizer = (args: Array<string>) => Array<string>
 export const locationsFromArguments: InputSanitizer = flow([
@@ -27,7 +28,15 @@ const parseWeather = async (location: string): Promise<ICurrentWeather> => {
 
 // Not really IO
 export const getTimeZones = async (locations: Array<string>): Promise<{ [location: string]: string }> => {
-    return {}
+    const coords = await Promise.all(locations.map(getLatLong))
+    const timeZones = await Promise.all(coords.map(parseTimeZone))
+    return zipObject(locations, timeZones)
+}
+const parseTimeZone = async ({ lat, long }: ILatLong): Promise<string> => {
+    if (lat == null || long == null) {
+        return '-'
+    }
+    return getTimeZone(`${lat}`, `${long}`) // Note to reviewer: I thought the spec stated coords are returned as strings
 }
 
 export const writeLocationInfo = (locationInfo: LocationInfo, out: OutputStream): void => {

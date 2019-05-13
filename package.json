@@ -36,6 +36,7 @@
     "is-online": "^8.2.0",
     "lodash": "^4.17.11",
     "openweather-apis": "^4.0.0",
+    "timezonedb-node": "^1.0.7",
     "typescript": "3.4.3"
   }
 }

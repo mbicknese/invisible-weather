@@ -1,7 +1,7 @@
 interface IOpenWeatherObject {
     coord: {
-        lon: number,
-        lat: number
+        lon: number|null,
+        lat: number|null
     },
     weather: Array<{
         id: number,
