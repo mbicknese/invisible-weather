@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import isOnline from 'is-online'
-import { getWeathers, locationsFromArguments, writeLocationInfo } from './src/io'
+import { getWeathers, locationsFromArguments, writeLocationInfo, getTimeZones } from './src/io'
 import { openWeatherAppID } from './src/config';
 
 (async () => {
@@ -15,12 +15,12 @@ import { openWeatherAppID } from './src/config';
 
     const locations = locationsFromArguments(process.argv)
     const weathers = await getWeathers(locations)
-    // getTimeZones
+    const timeZones = await getTimeZones(locations)
 
     writeLocationInfo(
         locations.reduce((acc, location) => ({ ...acc, [location]: {
             currentWeather: weathers[location],
-            timeZone: 'WIP'
+            timeZone: timeZones[location]
         }}), {}),
         process.stdout.write.bind(process.stdout)
     )
